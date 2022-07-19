@@ -18,10 +18,12 @@ import java.net.URI;
 @RequestMapping("/albuns/{idAlbum}/imagens")
 public class NovaImagemController {
 
-    @Autowired
-    private ImagemRepository imagemRepository;
-    @Autowired
-    private AlbumRepository albumRepository;
+
+    private final AlbumRepository albumRepository;
+
+    public NovaImagemController(AlbumRepository albumRepository) {
+        this.albumRepository = albumRepository;
+    }
 
     @PostMapping
     public ResponseEntity<Void> cadstraImagem(@PathVariable Long idAlbum, @RequestBody @Valid ImagemRequest request,
